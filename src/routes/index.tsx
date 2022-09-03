@@ -1,19 +1,28 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, View} from 'react-native';
 
-import {Home} from '../screens/Home';
+import {FriendsFeed} from '../screens/FriendsFeed';
+import {Settings} from '../screens/Settings';
 
-const Stack = createNativeStackNavigator();
+const ProfileStack = createNativeStackNavigator();
 
 export const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
+      <ProfileStack.Navigator
+        screenOptions={{
+          headerTitleStyle: {fontWeight: '700', fontSize: 20},
+          headerTintColor: '#fff',
+          headerBackground: () => (
+            <View style={{flex: 1, backgroundColor: '#000000'}} />
+          ),
+          headerBackTitle: '',
+        }}>
+        <ProfileStack.Screen
+          name="FriendsFeed"
+          component={FriendsFeed}
           options={{
             title: 'BeReal.',
             headerRight: () => (
@@ -23,7 +32,8 @@ export const Routes = () => {
             ),
           }}
         />
-      </Stack.Navigator>
+        <ProfileStack.Screen name="Settings" component={Settings} />
+      </ProfileStack.Navigator>
     </NavigationContainer>
   );
 };
