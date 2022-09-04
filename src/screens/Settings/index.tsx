@@ -1,8 +1,9 @@
 import React from 'react';
-import {faker} from '@faker-js/faker';
 
 import {ListGroup} from '../../components/ListGroup';
 import {ProfileCard} from '../../components/ProfileCard';
+
+import {useAuth} from '../../hooks/useAuth';
 
 import {
   Container,
@@ -73,21 +74,13 @@ const SECTIONS = [
   },
 ];
 
-const FAKE_USER = {
-  name: faker.name.fullName(),
-  nick: faker.word.adjective(),
-  image: faker.image.people(640, 640),
-};
-
 export const Settings = () => {
+  const {user} = useAuth();
+
   return (
     <Container>
       <ProfileContainer>
-        <ProfileCard
-          name={FAKE_USER.name}
-          nick={FAKE_USER.nick}
-          image={FAKE_USER.image}
-        />
+        <ProfileCard name={user.name} nick={user.nick} image={user.avatar} />
       </ProfileContainer>
 
       {SECTIONS.map(({key, name, items}) => (
