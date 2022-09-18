@@ -22,6 +22,15 @@ export const ImageContainer = styled.ImageBackground`
   overflow: hidden;
 `;
 
+export const EmptyView = styled.View`
+  width: ${memoriesContentWidth / 7}px;
+  height: 56px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+`;
+
 export const DayLabelContainer = styled.View<LabelProps>`
   justify-content: center;
   align-items: center;

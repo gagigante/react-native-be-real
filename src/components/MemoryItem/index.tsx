@@ -1,6 +1,12 @@
 import React from 'react';
 
-import {Container, ImageContainer, DayLabelContainer, DayLabel} from './styles';
+import {
+  Container,
+  ImageContainer,
+  DayLabelContainer,
+  DayLabel,
+  EmptyView,
+} from './styles';
 
 type MemoryItemProps = {
   label: string;
@@ -11,11 +17,19 @@ type MemoryItemProps = {
 export const MemoryItem = ({label, image, active = false}: MemoryItemProps) => {
   return (
     <Container>
-      <ImageContainer source={{uri: image ?? ''}} resizeMode="cover">
-        <DayLabelContainer active={active}>
-          <DayLabel active={active}>{label}</DayLabel>
-        </DayLabelContainer>
-      </ImageContainer>
+      {image ? (
+        <ImageContainer source={{uri: image}} resizeMode="cover">
+          <DayLabelContainer active={active}>
+            <DayLabel active={active}>{label}</DayLabel>
+          </DayLabelContainer>
+        </ImageContainer>
+      ) : (
+        <EmptyView>
+          <DayLabelContainer active={active}>
+            <DayLabel active={active}>{label}</DayLabel>
+          </DayLabelContainer>
+        </EmptyView>
+      )}
     </Container>
   );
 };
