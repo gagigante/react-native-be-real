@@ -5,21 +5,31 @@ type LabelProps = {
   active: boolean;
 };
 
+type ImageContainerProps = {
+  isMemoryOnTime: boolean;
+};
+
 const windowWidth = Dimensions.get('window').width;
 const memoriesContentWidth = windowWidth - 48 - 48;
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   flex-direction: row;
   margin: 4px;
 `;
 
-export const ImageContainer = styled.ImageBackground`
+export const ImageContainer = styled.ImageBackground<ImageContainerProps>`
   width: ${memoriesContentWidth / 7}px;
   height: 56px;
   justify-content: center;
   align-items: center;
   border-radius: 6px;
   overflow: hidden;
+
+  ${props =>
+    props.isMemoryOnTime &&
+    css`
+      border: 1.5px solid #fff;
+    `}
 `;
 
 export const EmptyView = styled.View`
