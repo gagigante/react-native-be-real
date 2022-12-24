@@ -56,7 +56,7 @@ export const DayLabelContainer = styled.View<LabelProps>`
 `;
 
 export const DayLabel = styled.Text<LabelProps>`
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   color: ${props => (props.active ? '#000000' : '#ffffff')};
 `;

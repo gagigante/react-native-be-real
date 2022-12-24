@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 import {ListGroup} from '../../components/ListGroup';
 import {ProfileCard} from '../../components/ProfileCard';
 
 import {useAuth} from '../../hooks/useAuth';
+
+import {ProfileStackScreenProps} from '../../routes/ProfileStackRoutes';
 
 import {
   Container,
@@ -12,6 +16,8 @@ import {
   Button,
   ButtonText,
 } from './styles';
+
+type SettingsProps = ProfileStackScreenProps<'Settings'>;
 
 const SECTIONS = [
   {
@@ -74,8 +80,18 @@ const SECTIONS = [
   },
 ];
 
-export const Settings = () => {
+export const Settings = ({navigation}: SettingsProps) => {
   const {user} = useAuth();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon color="#fff" name="arrow-left" size={28} />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
   return (
     <Container>
